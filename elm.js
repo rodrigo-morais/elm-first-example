@@ -10339,9 +10339,9 @@ Elm.Main.make = function (_elm) {
    var update = F2(function (action,model) {
       var _p0 = action;
       if (_p0.ctor === "Greetings") {
-            return model;
+            return _U.update(model,{message: A2($Basics._op["++"],model.greeting,model.name)});
          } else {
-            return A2($Basics._op["++"],"Hello, ",_p0._0);
+            return _U.update(model,{name: _p0._0});
          }
    });
    var Greetings = {ctor: "Greetings"};
@@ -10356,9 +10356,10 @@ Elm.Main.make = function (_elm) {
                       ,A3($Html$Events.on,"input",$Html$Events.targetValue,function (_p1) {    return A2($Signal.message,address,SetName(_p1));})]),
               _U.list([]))
               ,A2($Html.button,_U.list([A2($Html$Events.onClick,address,Greetings)]),_U.list([$Html.text("OK")]))
-              ,A2($Html.div,_U.list([]),_U.list([$Html.text($Basics.toString(model))]))]));
+              ,A2($Html.h2,_U.list([]),_U.list([$Html.text(model.message)]))]));
    });
-   var model = "";
+   var model = {greeting: "Hello, ",name: "",message: ""};
    var main = $StartApp$Simple.start({model: model,view: view,update: update});
-   return _elm.Main.values = {_op: _op,main: main,model: model,SetName: SetName,Greetings: Greetings,view: view,update: update};
+   var Model = F3(function (a,b,c) {    return {greeting: a,name: b,message: c};});
+   return _elm.Main.values = {_op: _op,Model: Model,model: model,SetName: SetName,Greetings: Greetings,update: update,view: view,main: main};
 };
